@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Learning Design Patters With Backbone</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="_/css/style.css">
+    </head>
+    <body>
+		<div class="wrapper">
+			<div id="header"></div>
+			<div id="design-pattern-content"></div>
+		</div>
+
+		<!-- TEMPLATES -->
+		<script id="list-view-container" type="text/template">
+			<h1><%= title %></h1>
+			<a id="back-button" href="#list">< back</a>
+		</script>
+
+		<script id="pattern-template" type="text/template">
+			#<%= id %> - <%= title %> <a href="#details/<%= id%>" >View Details</a>
+		</script>
+		
+		<script type="text/javascript" src="_/js/lib/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="_/js/lib/underscore-min.js"></script>
+		<script type="text/javascript" src="_/js/lib/backbone-min.js"></script>
+		<script type="text/javascript" src="_/js/pattern-data.js"></script>
+		<script type="text/javascript" src="_/js/scripts.js"></script>
+    </body>
+</html>
