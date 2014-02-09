@@ -12,7 +12,7 @@ a 		{text-decoration: none; color: #369;}
 .list-view li {
 	padding: 5px 10px;
 	margin: 0;
-	width: 40%;
+	max-width: 360px;
 }
 
 .list-view li a {
@@ -33,9 +33,17 @@ a 		{text-decoration: none; color: #369;}
 
 .details-view li{
 	margin-bottom: 4px;
+	padding-left: 10px;
 }
 
 .details-view li:before {
 	content: '\00BB';
 	padding-right: 4px;
+	margin-left: -13px;
+}
+
+@media screen and ( max-width: 920px ){
+	.wrapper {
+		padding:0 10px;
+	}
 }
