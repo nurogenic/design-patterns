@@ -10,6 +10,8 @@
 
 	var bEvents = _.extend({}, Backbone.Events);
 
+	// Helpers
+	// Helper functions I use periodically
 	DesignPatterns.Helpers = {
 		
 		template: function(id){
@@ -31,6 +33,7 @@
 		}
 	};
 
+	// Router
 	// Handles the rendering of different routes
 	DesignPatterns.Router = Backbone.Router.extend({
 		routes: {
@@ -66,21 +69,23 @@
 	    }
 	});
 
+	// Model
 	// Setting defaults for my Pattern model
 	DesignPatterns.Models.Pattern = Backbone.Model.extend({
 		defaults : {
 			id : 0,
 			title : '',
 			description : ''
-		},
-
-
+		}
 	});
 
+	// Collection
+	// Defines Pattern Model Collection
 	DesignPatterns.Collections.Patterns = Backbone.Collection.extend({
 		model: DesignPatterns.Models.Pattern
 	});
 
+	// Collection View
 	// Handles rendering the entire list of design patterns
 	DesignPatterns.Views.Patterns = Backbone.View.extend({
 		tagName : 'ul',
@@ -106,6 +111,7 @@
 		}
 	});
 
+	// View		
 	// Handles rendering the individual design patern item in list
 	DesignPatterns.Views.Pattern = Backbone.View.extend({
 		tagName : "li",
@@ -118,6 +124,7 @@
 		}
 	});
 
+	// Page View
 	// Handles adding new pattern
 	DesignPatterns.Views.AddPattern = Backbone.View.extend({
 		tagName: 'form',
@@ -135,7 +142,7 @@
 		},
 
 		render: function(){
-			var template = DesignPatterns.Helpers.template( 'list-view-container' );
+			var template = DesignPatterns.Helpers.template( 'header-template' );
 	    	$('#header').html( template( {title : 'Add A New Design Pattern' }) );
 
 	    	$("#design-pattern-content").html( this.$el.html(this.template) );
@@ -168,10 +175,11 @@
 		}
 	});
 
+	// Page View
 	// Handles showing specific pattern details
 	DesignPatterns.Views.ShowPattern = Backbone.View.extend({
 
-		template: DesignPatterns.Helpers.template( 'list-view-container' ),
+		template: DesignPatterns.Helpers.template( 'header-template' ),
 
 		initialize: function(){
 			bEvents.on('patternTemplate:show', this.render, this)
@@ -190,10 +198,11 @@
 		}
 	});
 
+	// Page View
 	// Handles showing all patterns
 	DesignPatterns.Views.ShowPatterns = Backbone.View.extend({
 
-		template: DesignPatterns.Helpers.template( 'list-view-container' ),
+		template: DesignPatterns.Helpers.template( 'header-template' ),
 
 		initialize: function(){
 			bEvents.on('patternTemplate:all', this.render, this)
@@ -212,8 +221,10 @@
 		}	
 	});
 
+	// Page View
+	// 404 Error page
 	DesignPatterns.Views.Error = Backbone.View.extend({
-		template: DesignPatterns.Helpers.template( 'list-view-container' ),
+		template: DesignPatterns.Helpers.template( 'header-template' ),
 
 		initialize: function(){
 			bEvents.on('patternTemplate:error', this.render, this)
@@ -234,11 +245,12 @@
 		}
 	});
 
-	//gather my collection and render
+	
+	// Gather my collection and render
 	var patternCollection 	= new DesignPatterns.Collections.Patterns( window.patternArray );
 	var patternView 		= new DesignPatterns.Views.Patterns( {collection: patternCollection} ).render().el;
 
-	// start my routers
+	// Start my routers
 	var router = new DesignPatterns.Router;
 	Backbone.history.start();
 })();
